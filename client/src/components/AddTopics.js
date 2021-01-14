@@ -44,6 +44,7 @@ class AddTopics extends Component {
     };
 
     this.props.submitTopic(topic);
+    document.getElementById('addTopics').reset();
   }
 
   componentDidMount() {
@@ -94,14 +95,10 @@ class AddTopics extends Component {
           id="modal3"
           className="modal"
         >
-          {/* If you want Bottom Sheet Modal then add 
-                        bottom-sheet class to the "modal" div
-                        If you want Fixed Footer Modal then add
-                        modal-fixed-footer to the "modal" div*/}
           <div className="modal-content">
             <h4>Enter New Data</h4>
             <div className="row">
-              <form className="col s12">
+              <form className="col s12" id="addTopics">
                 <div className="row">
                   <div className="input-field col s4">
                     <input

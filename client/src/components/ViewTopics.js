@@ -69,18 +69,22 @@ class ViewTopics extends Component {
         >
           <div className="modal-content">
             <h4>List of Topics</h4>
-            <div>
-              <table className="striped centered">
-                <thead>
-                  <tr>
-                    <th>Topic ID</th>
-                    <th>Topic Title</th>
-                    <th>Topic Description</th>
-                  </tr>
-                </thead>
-                <tbody>{this.renderTopics()}</tbody>
-              </table>
-            </div>
+            {this.props.topics.length > 0 ? (
+              <div>
+                <table className="striped centered">
+                  <thead>
+                    <tr>
+                      <th>Topic ID</th>
+                      <th>Topic Title</th>
+                      <th>Topic Description</th>
+                    </tr>
+                  </thead>
+                  <tbody>{this.renderTopics()}</tbody>
+                </table>
+              </div>
+            ) : (
+              <h6>No Records Were Found</h6>
+            )}
           </div>
           <div className="modal-footer">
             <a

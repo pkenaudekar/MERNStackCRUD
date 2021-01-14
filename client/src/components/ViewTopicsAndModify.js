@@ -28,11 +28,6 @@ class ViewTopicsAndModify extends Component {
       endingTop: '10%',
     };
     M.Modal.init(this.Modal, options).destroy();
-
-    // let instance = M.Modal.getInstance(this.Modal);
-    // instance.open();
-    // instance.close();
-    // instance.destroy();
   }
 
   renderTopics() {
@@ -83,18 +78,22 @@ class ViewTopicsAndModify extends Component {
         >
           <div className="modal-content">
             <h4>List of Topics</h4>
-            <div>
-              <table className="striped centered">
-                <thead>
-                  <tr>
-                    <th>Topic ID</th>
-                    <th>Topic Title</th>
-                    <th>Course Description</th>
-                  </tr>
-                </thead>
-                <tbody>{this.renderTopics()}</tbody>
-              </table>
-            </div>
+            {this.props.topics.length > 0 ? (
+              <div>
+                <table className="striped centered">
+                  <thead>
+                    <tr>
+                      <th>Topic ID</th>
+                      <th>Topic Title</th>
+                      <th>Course Description</th>
+                    </tr>
+                  </thead>
+                  <tbody>{this.renderTopics()}</tbody>
+                </table>
+              </div>
+            ) : (
+              <h6>No Records Were Found</h6>
+            )}
           </div>
           <div className="modal-footer">
             <a

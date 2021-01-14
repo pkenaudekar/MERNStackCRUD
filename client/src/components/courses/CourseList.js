@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
 import { fetchCourses } from '../../actions';
 import ViewTopics from '../ViewTopics';
@@ -26,19 +26,25 @@ class CourseList extends Component {
 
   render() {
     return (
-      <div>
-        <table className="striped centered">
-          <thead>
-            <tr>
-              <th>Course ID</th>
-              <th>Course Title</th>
-              <th>Course Description</th>
-              <th>Course Duration (In Days)</th>
-            </tr>
-          </thead>
-          <tbody>{this.renderCourses()}</tbody>
-        </table>
-      </div>
+      <Fragment>
+        {this.props.courses.length > 0 ? (
+          <div>
+            <table className="striped centered">
+              <thead>
+                <tr>
+                  <th>Course ID</th>
+                  <th>Course Title</th>
+                  <th>Course Description</th>
+                  <th>Course Duration (In Days)</th>
+                </tr>
+              </thead>
+              <tbody>{this.renderCourses()}</tbody>
+            </table>
+          </div>
+        ) : (
+          <h6>No Records Were Found</h6>
+        )}
+      </Fragment>
     );
   }
 }

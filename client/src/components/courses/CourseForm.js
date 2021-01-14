@@ -2,7 +2,7 @@
 import _ from 'lodash';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { reduxForm, Field } from 'redux-form';
+import { reduxForm, Field, reset } from 'redux-form';
 import CourseField from './CourseField';
 import formFields from './formFields';
 import AddTopics from '../AddTopics';
@@ -67,13 +67,15 @@ class CourseForm extends Component {
         >
           <form
             onSubmit={this.props.handleSubmit((course) =>
-              this.props.submitCourse(course)
+              this.props.submitCourse(course).then(() => {
+                this.props.dispatch(reset('courseForm'));
+              })
             )}
           >
             <div>
               {this.renderFields()}
               <button
-                //onClick={() => this.props.submitCourse()}
+                //onClick={(course) => this.props.submitCourse(course)}
                 type="submit"
                 className="teal btn-flat right white-text"
               >
@@ -94,17 +96,23 @@ class CourseForm extends Component {
             right: '1vw',
           }}
         >
-          <table className="striped centered ">
-            <thead>
-              <tr>
-                <th>Course ID</th>
-                <th>Course Title</th>
-                <th>Course Description</th>
-                <th>Course Duration (In Days)</th>
-              </tr>
-            </thead>
-            <tbody>{this.renderCourses()}</tbody>
-          </table>
+          {this.props.courses.length > 0 ? (
+            <table className="striped centered ">
+              <thead>
+                <tr>
+                  <th>Course ID</th>
+                  <th>Course Title</th>
+                  <th>Course Description</th>
+                  <th>Course Duration (In Days)</th>
+                </tr>
+              </thead>
+              <tbody>{this.renderCourses()}</tbody>
+            </table>
+          ) : (
+            <div style={{ textAlign: 'center' }}>
+              <h6>No Course Records Were Found</h6>
+            </div>
+          )}
         </div>
       </div>
     );
@@ -118,6 +126,3 @@ function mapStateToProps(state) {
 CourseForm = connect(mapStateToProps, actions)(CourseForm);
 
 export default reduxForm({ form: 'courseForm' })(CourseForm);
-
-//export default connect(mapStateToProps, actions)(CourseForm);
-//export default reduxForm({  form: 'courseForm',})(connect(actions)(CourseForm));

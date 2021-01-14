@@ -66,17 +66,18 @@ class ModifyTopics extends Component {
       startingTop: '4%',
       endingTop: '10%',
     };
-    M.Modal.init(this.Modal, options).destroy();
+    M.Modal.init(this.Modal, options);
   }
+
   render() {
     return (
       <div>
         <a
-          href="#modal5"
           data-dismiss="modal"
-          className="modal-closewaves-effect waves-light btn modal-trigger"
-          onClick={() => M.Modal.init(this.Modal, this.options).open()}
           data-toggle="modal"
+          href="#modal5"
+          className="waves-effect waves-light btn modal-trigger"
+          onClick={() => M.Modal.init(this.Modal, this.options).open()}
           data-target="modal5"
         >
           Modify
@@ -140,7 +141,7 @@ class ModifyTopics extends Component {
             </a>
             <a
               type="submit"
-              href="# "
+              href="#modal5"
               className="modal-close waves-effect waves-green btn-flat"
               onClick={(event) => {
                 this.onSubmit(event);
